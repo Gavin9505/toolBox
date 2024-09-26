@@ -3,7 +3,7 @@
 #Include source file
 source ./tool/config.sh
 
-function vim_isntall {
+function vim_install {
     local appAllinstall=true
 
     echo -e "${BLUE}Software check and install for Vim.${NC}"
