@@ -10,7 +10,7 @@ function fzf_install {
 	~/toolBox/software/fzf/install		
 
 	#shellcheck source=/home/gavin/.bashrc
-	source . "$HOME/.bashrc"
+	source "$HOME/.bashrc"
 }
 
 

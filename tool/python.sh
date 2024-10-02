@@ -17,7 +17,7 @@ function python_install {
 
 
 	#shellcheck source=/home/gavin/.bashrc
-	source . "$HOME/.bashrc"
+	source "$HOME/.bashrc"
 
 	#python software installing
 	echo -e "${BLUE}Software check and install for Python.${NC}"
