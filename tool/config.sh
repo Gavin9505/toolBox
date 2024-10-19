@@ -31,7 +31,7 @@ dev_software_list=(
 	    "make" \
 	    "git" \
 	    "bear" \
-	    "clang"\
+	    "clangd" \
 	)
 	
 system_software_list=(
@@ -40,24 +40,21 @@ system_software_list=(
 	    "wget" \
 	    "zip" \
 	    "unzip" \
-	    "openssh-server"
+	    "openssh-server" \
 	)
 
 vim_software_list=(
 	    "libtool-bin" \
 	    "libxt-dev" \
-	    "libgtk-3-dev"\
+	    "libgtk-3-dev" \
 	    "cscope" \
 	    "universal-ctags" \
+	    "exuberant-ctags" \
 	    "libncurses-dev" \
 	    "shellcheck" 
 	)
 
-
-
-
 #System software check and install
-
 function systemUpdate {
 	sudo apt-get update && sudo apt-get upgrade -y
 } 

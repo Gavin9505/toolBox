@@ -7,8 +7,7 @@ function vim_install {
     local appAllinstall=true
 
     echo -e "${BLUE}Software check and install for Vim.${NC}"
-		    
-    for softwareName in "${vim_software_list=[@]}" 
+    for softwareName in "${vim_software_list[@]}" 
     do
 	    if ! softwareCheckAndInstall "$softwareName" ; then
 		    appAllinstall=false

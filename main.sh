@@ -17,7 +17,7 @@ function main {
 	read  -r -p "Please Enter the task Code: " taskCode
 
 	case ${taskCode} in
-		"all")
+		"0")
 			echo "All software installing"
 			devTool
 			python_install
@@ -25,39 +25,35 @@ function main {
 			fzf_install
 			vim_install
 			;;
-		"dev")
+		"1")
 			echo "Dev tool installing..."
 			devTool
 			;;
 
-		"python")
+		"2")
 			echo "Python installing..."
 			python_install		
 			;;
 
-		"nodejs")
+		"3")
 			echo "NodeJs installing..."	
 			nodejs_install					
 			;;
 
-		"fzf")
+		"4")
 			echo "Fzf installing..."	
 			fzf_install
 			;;
 
-		"vim")
+		"5")
 			echo "Vim installing..."	
 			vim_install
 			;;
-
+		"6")
+			echo "Nerd fonts installing"
+			nerdfonts_install
+			;;
 		"-h")
-			echo " "
-			echo "    python"
-			echo "    nodejs"
-			echo "    fzf"
-			echo "    vim"
-			echo "    toolchain"
-			echo "    systemtool"
 			;;
 		*)
 			echo "task error!"
