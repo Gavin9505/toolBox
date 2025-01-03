@@ -12,8 +12,7 @@ if [ -d "$SCRIPTS_DIR" ]; then
 fi
 
 
-
-function main {
+function Install {
 	read  -r -p "Please Enter the task Code: " taskCode
 
 	case ${taskCode} in
@@ -54,6 +53,7 @@ function main {
 			nerdfonts_install
 			;;
 		"-h")
+			echo "test help"	
 			;;
 		*)
 			echo "task error!"
@@ -61,4 +61,31 @@ function main {
 	esac
 } 
 
-main
+function menus {
+    
+    while getopts "iuh" flag
+    do
+	case "${flag}" in
+	    i) 
+		echo "Install software." 
+		    Install "$@"	
+		;;
+	    u) 
+		echo "Uninstall software" 
+		    Uninstall		
+		;;
+	    h) 
+		echo "Help" 
+		;;
+	    *) 
+		echo "Usage: $0 [-i]:Install tool [-u]:Uninstall package [-h]" ;;
+	esac
+    done
+}
+
+#Run menus
+menus "$@"
+
+
+
+
