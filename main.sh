@@ -41,7 +41,10 @@ function Install {
 
 		"4")
 			echo "Fzf installing..."	
-			fzf_install
+			#fzf_install
+			#fzf_config	
+			fzf_clear_config
+
 			;;
 
 		"5")
@@ -59,6 +62,9 @@ function Install {
 			echo "task error!"
 			;;
 	esac
+
+	#shellcheck source=/home/gavin/.bashrc
+	source "$HOME/.bashrc"
 } 
 
 function menus {

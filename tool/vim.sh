@@ -20,13 +20,16 @@ function vim_install {
 	    echo -e "${RED}Some software packages failed to install. Please check above for details.${NC}"
     fi
 
-    #VIM install
+    # Clone vim repository from github.
     git clone https://github.com/vim/vim.git ~/toolBox/software/vim
     
+    # Into the "vim -> src" folder.
     cd ~/toolBox/software/vim/src || { echo "path not found"; exit 1; }
     
+    # Compile project. 
     make
-
+    
+    # Install vim
     sudo make install
 }
 
