@@ -3,9 +3,19 @@
 #Include source file
 source ./tool/config.sh
 
+# Check sourcd file is exist.
+if [[ ! -f ./tool/config.sh ]]; then
+    echo -e "${RED}Error! config.sh is not exist, Please check './tool/config.sh'.${NC}" >&2
+    exit 1
+fi
+
+
+
+
 function vim_install {
     local appAllinstall=true
 
+    # Check and Install required package for vim.
     echo -e "${BLUE}Software check and install for Vim.${NC}"
     for softwareName in "${vim_software_list[@]}" 
     do

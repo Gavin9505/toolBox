@@ -12,69 +12,43 @@ if [ -d "$SCRIPTS_DIR" ]; then
 fi
 
 
+
+
 function Install {
-	read  -r -p "Please Enter the task Code: " taskCode
+	echo "Software Installing"
+	
+	echo -e "${GREEN}Dev tool installing...${NC}"
+	devTool
 
-	case ${taskCode} in
-		"0")
-			echo "All software installing"
-			devTool
-			python_install
-			nodejs_install
-			fzf_install
-			vim_install
-			;;
-		"1")
-			echo "Dev tool installing..."
-			devTool
-			;;
+	echo -e "${GREEN}Python installing...${NC}"
+	python_install
 
-		"2")
-			echo "Python installing..."
-			python_install		
-			;;
+	echo -e "${GREEN}NodeJs installing...${NC}"	
+	nodejs_install
 
-		"3")
-			echo "NodeJs installing..."	
-			nodejs_install					
-			;;
+	echo -e "${GREEN}Fzf installing...${NC}"	
+	fzf_install
+	fzf_config
 
-		"4")
-			echo "Fzf installing..."	
-			#fzf_install
-			#fzf_config	
-			fzf_clear_config
-
-			;;
-
-		"5")
-			echo "Vim installing..."	
-			vim_install
-			;;
-		"6")
-			echo "Nerd fonts installing"
-			nerdfonts_install
-			;;
-		"-h")
-			echo "test help"	
-			;;
-		*)
-			echo "task error!"
-			;;
-	esac
+	echo -e "${GREEN}Vim installing...${NC}"	
+	vim_install
 
 	#shellcheck source=/home/gavin/.bashrc
 	source "$HOME/.bashrc"
+
+	echo -e "${GREEN}All Software Installed.${NC}"
 } 
 
+
+
+
 function menus {
-    
     while getopts "iuh" flag
     do
 	case "${flag}" in
 	    i) 
 		echo "Install software." 
-		    Install "$@"	
+		    Install	
 		;;
 	    u) 
 		echo "Uninstall software" 
@@ -89,7 +63,7 @@ function menus {
     done
 }
 
-#Run menus
+#Run menus --------------------------------------------------------------------------------------
 menus "$@"
 
 
