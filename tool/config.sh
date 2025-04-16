@@ -41,7 +41,7 @@ system_software_list=(
     "unzip" \
     "openssh-server" \
     "ripgrep"  \
-    "highlight"
+    "bat"
 )
 
 vim_software_list=(
