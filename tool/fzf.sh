@@ -92,22 +92,28 @@ EOF
 
 
 function fzf_clear_config {
-    LINES_TO_DELETE=(
-	'export FZF_CTRL_T_OPTS="--exit-0 --preview '\''(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'\'' --bind '\''?:toggle-preview'\''"'
-	'export FZF_CTRL_R_OPTS="--exact --preview '\''echo {}'\'' --preview-window down:3:hidden:wrap --bind '\''?:toggle-preview'\''"'
-	'export FZF_ALT_C_OPTS="--preview '\''tree -C {} | head -200'\''"'  
-	'export FZF_DEFAULT_OPTS="--color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54"'
+    local CONFIG_FILE="${1:-$HOME/.bashrc}"
+
+    echo "Cleaning FZF-related configurations from: $CONFIG_FILE"
+
+    # Patterns to match. Use flexible matching to allow for multiline variants.
+    local -a PATTERNS=(
+        '^export FZF_CTRL_T_OPTS='
+        '^export FZF_CTRL_R_OPTS='
+        '^export FZF_ALT_C_OPTS='
+        '^export FZF_DEFAULT_OPTS='
     )
-    #迴圈刪除FZF Configuration Command.
-    for LINE in "${LINES_TO_DELETE[@]}"; do
-        ESCAPED_LINE=$(echo "$LINE" | sed 's/[]\/$*.^[]/\\&/g') 
-        if grep -qF "$LINE" ~/.bashrc; then
-            sed -i "/$ESCAPED_LINE/d" ~/.bashrc
-            echo -e "${YELLOW}Deleted: $LINE${NC}"
+
+    for PATTERN in "${PATTERNS[@]}"; do
+        if grep -qE "$PATTERN" "$CONFIG_FILE"; then
+            echo -e "\033[0;33mDeleting block: $PATTERN\033[0m"
+            # Delete multi-line export using sed. Handles line continuations with '\'
+            sed -i "/$PATTERN/,/^[^ ]*[^\\]$/d" "$CONFIG_FILE"
         else
-            echo -e "${YELLOW}Not found: $LINE${NC}"
+            echo -e "\033[0;33mPattern not found: $PATTERN\033[0m"
         fi
     done
-    echo -e "${GREEN}All FZF configurations have been deleted from ~/.bashrc.${NC}"
+
+    echo -e "\033[0;32mAll FZF configurations cleared from $CONFIG_FILE.\033[0m"
 }
 

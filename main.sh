@@ -52,7 +52,7 @@ function Uninstall {
     echo -e "${GREEN}NodeJs Uninstalling...${NC}"	
 
     echo -e "${GREEN}Fzf Uninstalling...${NC}"	
-
+	fzf_clear_config
     echo -e "${GREEN}Vim Uninstalling...${NC}"	
 
     #shellcheck source=/home/gavin/.bashrc
